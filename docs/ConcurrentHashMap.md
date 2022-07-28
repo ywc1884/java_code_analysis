@@ -628,7 +628,7 @@ https://stackoverflow.com/questions/53493706/how-the-conditions-sc-rs-1-sc-rs-ma
 CHM中采取了和LongAdder类似的方案, 使用了一个baseCount作为基础计数器, 同时也使用了counterCells数组让多个线程
 在数组中随机挑选位置将计数值更新到该位置, 这样做的好处是多个线程把计数值写到数组的不同slot中, 提高了并发度和效率.
 其中每个线程在counterCells数组的位置采用ThreadLocalRandom.getProbe()方法生成一个线程独有的随机数, 然后针对
-m取模获取slot位置.
+counterCells数组长度-1取模获取slot位置.
 
 ```
 final long sumCount() {
