@@ -572,6 +572,7 @@ private void processWorkerExit(Worker w, boolean completedAbruptly) {
 ```
 
 线程池execute方法大致的逻辑如下面的时序图:
+
 ![execute_sequence](/images/execute_sequence.png)
 
 
