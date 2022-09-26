@@ -997,6 +997,19 @@ ReadLock和WriteLock，却共享一个同步队列控制器Sync，表面看是�
 当state!=0，exclusiveCount(c)!=0时表示写线程持有锁，返回值写锁重入次数。
 ```
 
+* Phaser
+
+```
+Phaser(阶段)作为JDK 1.7引入的类是针对之前的CountDownLatch和CyclicBarrier进行优化实现产生的工具类, 比这两者使用起来都要灵活些，除了支持已有的CountDownLatch和CyclicBarrier
+的功能，同时也支持多阶段任务执行，且阶段之间还可以调整parties即同时执行的任务并发数. 需要注意的是源码中保存阶段phase, 某个节点任务数以及未完成的任务数都是通过1个long型的state变量
+实现的，state变量组成如下图.
+
+实现中仍然使用了队列保存阻塞等待的线程且采用头插法, 源码中有2个队列: evenQ和oddQ, 根据当前phase的奇偶来决定进入哪一个队列.
+```
+
+![Phaser state](/images/Phaser_state.png)
+
+
 **注**: 本文章属于完全转载的别人的文章，只是为了方便学习保存, 原文章链接如下:
 
 [AbstractQueuedSynchronizer(AQS)：并发工具的基石](https://juejin.cn/post/6941729697986248717#heading-12)
