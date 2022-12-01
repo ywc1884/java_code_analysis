@@ -751,6 +751,8 @@ System.out.println(collect.size());
 7) **在使用并行流的时候是无法保证元素的顺序的，也就是即使你用了同步集合也只能保证元素都正确但无法保证其中的顺序**；
 8) lambda的执行并不是瞬间完成的，所有使用parallel stream的程序都有可能成为阻塞程序的源头，并且在执行过程中程序中的其他部分将无法访问这些workers，这意味着任何依赖parallel streams的程序在什么别的东西占用着common ForkJoinPool时将会变得不可预知并且暗藏危机。
 
+
+Note: parallel stream的源码分析可以参考这篇文章: https://juejin.cn/post/7005899099186659335
 ## 结语
 
 本文属于另外一个github文章的copy的文章, 用于方便自己学习, 原文链接: https://github.com/CarpenterLee/JavaLambdaInternals
